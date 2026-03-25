@@ -1,6 +1,7 @@
-// Use Vite proxy in dev to avoid CORS, direct URL in production
-const MCP_ENDPOINT = import.meta.env.DEV ? '/mcp' : 'https://mcp.lilypad.co.in/mcp';
-const API_KEY = 'N_r1ettwQ045LOV6eAPhFzdKofpOWd4MfXPXbukS1-Y';
+// Dev: Vite proxy at /mcp | Prod: Vercel serverless function at /api/mcp
+const MCP_ENDPOINT = import.meta.env.DEV ? '/mcp' : '/api/mcp';
+// API key only needed in dev (prod proxy adds it server-side)
+const API_KEY = import.meta.env.DEV ? 'N_r1ettwQ045LOV6eAPhFzdKofpOWd4MfXPXbukS1-Y' : '';
 
 let sessionId = null;
 let requestId = 0;
@@ -12,8 +13,8 @@ function baseHeaders() {
   const h = {
     'Content-Type': 'application/json',
     'Accept': 'application/json, text/event-stream',
-    'X-API-Key': API_KEY,
   };
+  if (API_KEY) h['X-API-Key'] = API_KEY;
   if (sessionId) h['Mcp-Session-Id'] = sessionId;
   return h;
 }
