@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/mcp",
+      "destination": "https://mcp.lilypad.co.in/mcp"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/mcp",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
+      ]
+    }
+  ]
+}
