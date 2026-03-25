@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --surface-primary: #1a1a1a;
+  --surface-container-secondary: #272727;
+  --surface-container-tertiary: #363636;
+  --surface-container-quaternary: #484848;
+  --on-surface-primary: #fafafa;
+  --on-surface-secondary: #f6f6f6;
+  --on-surface-tertiary: #b8b8b8;
+  --on-surface-quaternary: #969696;
+  --outline: #484848;
+  --shadow: #006b6b;
+  --highlight: #00ffff;
+  --highlight-2: #b0ffff;
+  --nav-bar-surface: #141414;
+  --button-normal-fill: #272727;
+  --button-normal-element: #fafafa;
+  --button-normal-outline: #00ffff;
+  --button-hover-fill: #b0ffff;
+  --button-hover-element: #1a1a1a;
+  --button-active-fill: #00ffff;
+  --button-active-element: #1a1a1a;
+  --button-disable-fill: #484848;
+  --button-disable-element: #969696;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--surface-primary);
+  color: var(--on-surface-primary);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Scrollbar ── */
+.chat-scrollbar::-webkit-scrollbar { width: 4px; }
+.chat-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.chat-scrollbar::-webkit-scrollbar-thumb { background: var(--surface-container-tertiary); border-radius: 100px; }
+.chat-scrollbar::-webkit-scrollbar-thumb:hover { background: var(--surface-container-quaternary); }
+
+/* ── Message content ── */
+.message-content p { margin-bottom: 0.5rem; }
+.message-content p:last-child { margin-bottom: 0; }
+.message-content ul, .message-content ol { padding-left: 1.25rem; margin-bottom: 0.5rem; }
+.message-content li { margin-bottom: 0.25rem; }
+.message-content strong { color: var(--highlight); font-weight: 600; }
+.message-content a { color: var(--highlight); text-decoration: underline; text-underline-offset: 2px; }
+.message-content a:hover { color: var(--highlight-2); }
+
+/* ── Typing dots (WhatsApp/Instagram style bounce) ── */
+@keyframes dotBounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.3; }
+  30%           { transform: translateY(-8px); opacity: 1; }
+}
+.dot-bounce {
+  animation: dotBounce 1.2s infinite ease-in-out;
+  display: inline-block;
+}
+
+/* ── Gradient text ── */
+.gradient-text {
+  background: linear-gradient(90deg, var(--highlight), var(--highlight-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Hero glow ── */
+@keyframes heroGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(0,255,255,0.08), 0 0 60px rgba(0,107,107,0.06); }
+  50%      { box-shadow: 0 0 30px rgba(0,255,255,0.16), 0 0 80px rgba(0,107,107,0.10); }
+}
+.hero-glow { animation: heroGlow 4s ease-in-out infinite; }
+
+/* ── Online dot ── */
+@keyframes onlinePulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.4; }
+}
+.online-dot { animation: onlinePulse 2s ease-in-out infinite; }
+
+/* ── Neon accent line ── */
+.neon-line {
+  background: linear-gradient(90deg, transparent, rgba(0,255,255,0.25), transparent);
+}
+
+/* ── Subtle noise texture for premium feel ── */
+.surface-noise {
+  position: relative;
+}
+.surface-noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Conversation gradient fade at top ── */
+.chat-fade-top {
+  mask-image: linear-gradient(to bottom, transparent, black 40px);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 40px);
+}
